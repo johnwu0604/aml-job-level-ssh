@@ -43,28 +43,28 @@ Content-Length: 574
 
 ## 3. Add NSG Rules
 
-Make sure the following rules are included in your virtual network NSG.
+Make sure the following rules are included in your virtual network NSG:
 
-1. Allow inbound CorpNetPublic access with priority lower than 180
+- Allow inbound CorpNetPublic access with priority lower than 180
 
 ```
 az network nsg rule create -g <RESOURCE GROUP> --nsg-name <NAME OF THE NSG> -n CorpNetPublic --priority 103 --source-address-prefixes CorpNetPublic --destination-port-ranges 4100 --access Allow --protocol Tcp 
 ```
 
-2. Allow inbound Batch Node Management access
+- Allow inbound Batch Node Management access
 
 ```
 az network nsg rule create -g <RESOURCE GROUP> --nsg-name <NAME OF THE NSG> -n BatchNodeManagement --priority 110 --source-address-prefixes BatchNodeManagement --destination-port-ranges 29876-29877 --access Allow --protocol Tcp 
 ```
 
-3. Allow inbound Azure Machine Learning access
+- Allow inbound Azure Machine Learning access
 
 ```
 az network nsg rule create -g <RESOURCE GROUP> --nsg-name <NAME OF THE NSG GROUP> -n AzureMachineLearning --priority 111 --source-address-prefixes AzureMachineLearning --destination-port-ranges 44224 --access Allow --protocol Tcp 
 ```
 
 
-## 2. Install Latest Azure ML SDK Version
+## 4. Install Latest Azure ML SDK Version
 
 Install the latest Azure ML SDK version (1.34.0 or higher) using pip:
 
@@ -78,7 +78,7 @@ You can also build a new conda environment by using the attached *env.yml* file:
 conda env create -f env.yml
 ```
 
-## 3. Submit Job
+## 5. Submit Job
 
 Run the sample [submit.py](./submit.py) file to submit a job with job level SSH:
 
@@ -86,15 +86,13 @@ Run the sample [submit.py](./submit.py) file to submit a job with job level SSH:
 python submit.py
 ```
 
-More specifically,
-
-1. Make sure that the appropriate windows base image is used:
+More specifically, make sure that the appropriate windows base image is used.
 
 ```
 env.docker.base_image = 'mcr.microsoft.com/azureml/3.5dotnet-ltsc2019:latest'
 ```
 
-2. Make sure your SSH public key is included in the run configuration:
+And make sure your SSH public key is included in the run configuration.
 
 ```
 run_config.services['SSH'] = ApplicationEndpointConfiguration(
@@ -104,7 +102,7 @@ run_config.services['SSH'] = ApplicationEndpointConfiguration(
 ```
 
 
-## 4. Connect to compute
+## 6. Connect to compute
 
 Go to the run details view for the job and click **Connect to compute** action button at the top. 
 
