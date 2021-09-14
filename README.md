@@ -41,6 +41,29 @@ Content-Length: 574
 }
 ```
 
+## 3. Add NSG Rules
+
+Make sure the following rules are included in your virtual network NSG.
+
+1. Allow inbound CorpNetPublic access with priority lower than 180
+
+```
+az network nsg rule create -g <RESOURCE GROUP> --nsg-name <NAME OF THE NSG> -n CorpNetPublic --priority 103 --source-address-prefixes CorpNetPublic --destination-port-ranges 4100 --access Allow --protocol Tcp 
+```
+
+2. Allow inbound Batch Node Management access
+
+```
+az network nsg rule create -g <RESOURCE GROUP> --nsg-name <NAME OF THE NSG> -n BatchNodeManagement --priority 110 --source-address-prefixes BatchNodeManagement --destination-port-ranges 29876-29877 --access Allow --protocol Tcp 
+```
+
+3. Allow inbound Azure Machine Learning access
+
+```
+az network nsg rule create -g <RESOURCE GROUP> --nsg-name <NAME OF THE NSG GROUP> -n AzureMachineLearning --priority 111 --source-address-prefixes AzureMachineLearning --destination-port-ranges 44224 --access Allow --protocol Tcp 
+```
+
+
 ## 2. Install Latest Azure ML SDK Version
 
 Install the latest Azure ML SDK version (1.34.0 or higher) using pip:
