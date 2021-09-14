@@ -41,7 +41,7 @@ Content-Length: 574
 }
 ```
 
-## 3. Add NSG Rules
+## 2. Add NSG Rules
 
 Make sure the following rules are included in your virtual network NSG:
 
@@ -64,7 +64,7 @@ az network nsg rule create -g <RESOURCE GROUP> --nsg-name <NAME OF THE NSG GROUP
 ```
 
 
-## 4. Install Latest Azure ML SDK Version
+## 3. Install Latest Azure ML SDK Version
 
 Install the latest Azure ML SDK version (1.34.0 or higher) using pip:
 
@@ -78,7 +78,7 @@ You can also build a new conda environment by using the attached *env.yml* file:
 conda env create -f env.yml
 ```
 
-## 5. Submit Job
+## 4. Submit Job
 
 Run the sample [submit.py](./submit.py) file to submit a job with job level SSH:
 
@@ -102,7 +102,7 @@ run_config.services['SSH'] = ApplicationEndpointConfiguration(
 ```
 
 
-## 6. Connect to compute
+## 5. Connect to compute
 
 Go to the run details view for the job and click **Connect to compute** action button at the top. 
 
